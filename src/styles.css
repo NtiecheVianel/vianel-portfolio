@@ -1,0 +1,347 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Vianel. portfolio design system
+ * Light gray canvas (#E7E7E7), pure red (#FF0000), black and white.
+ * Poppins everywhere, pill-shaped components, generous spacing.
+ */
+
+@theme inline {
+  --font-sans: "Poppins", sans-serif;
+  --font-display: "Poppins", sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ink: var(--ink);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-surface: var(--surface);
+  --shadow-pill: 0 10px 30px -12px oklch(0 0 0 / 0.25);
+  --shadow-card: 0 18px 40px -24px oklch(0 0 0 / 0.35);
+}
+
+:root {
+  --radius: 1rem;
+  /* Light mode (Clean modern canvas) */
+  --background: oklch(0.93 0 0); /* #E7E7E7 */
+  --surface: oklch(1 0 0); /* #FFFFFF */
+  --foreground: oklch(0.12 0 0); /* #141414 */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.12 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.12 0 0);
+  --primary: oklch(0.6279 0.2577 29.23); /* #FF0000 */
+  --primary-foreground: oklch(1 0 0);
+  --ink: oklch(0.14 0 0);
+  --ink-foreground: oklch(1 0 0);
+  --secondary: oklch(0.96 0 0);
+  --secondary-foreground: oklch(0.12 0 0);
+  --muted: oklch(0.95 0 0);
+  --muted-foreground: oklch(0.46 0 0);
+  --accent: oklch(0.6279 0.2577 29.23);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.6279 0.2577 29.23);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.87 0 0);
+  --input: oklch(0.87 0 0);
+  --ring: oklch(0.6279 0.2577 29.23);
+}
+
+.dark {
+  /* Dark mode (Deep high-contrast obsidian canvas) */
+  --background: oklch(0.12 0.006 260); /* #111115 */
+  --surface: oklch(0.17 0.008 260); /* #19191f */
+  --foreground: oklch(0.98 0 0); /* Crisp white */
+  --card: oklch(0.17 0.008 260);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.17 0.008 260);
+  --popover-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.6279 0.2577 29.23); /* #FF0000 */
+  --primary-foreground: oklch(1 0 0);
+  --ink: oklch(0.23 0.008 260);
+  --ink-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.21 0.008 260);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.20 0.008 260);
+  --muted-foreground: oklch(0.72 0.01 260);
+  --border: oklch(0.26 0.008 260);
+  --input: oklch(0.26 0.008 260);
+  --ring: oklch(0.6279 0.2577 29.23);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--color-foreground);
+  }
+}
+
+@utility pill-black {
+  border-radius: 9999px;
+  background-color: var(--ink);
+  color: var(--ink-foreground);
+  font-weight: 600;
+  transition:
+    transform 0.25s ease,
+    background-color 0.25s ease,
+    color 0.25s ease;
+  &:hover {
+    transform: translateY(-2px);
+    background-color: var(--primary);
+    color: #ffffff;
+  }
+}
+
+.dark .pill-black {
+  background-color: #ffffff;
+  color: #0d0d10;
+  &:hover {
+    background-color: var(--primary);
+    color: #ffffff;
+  }
+}
+
+@utility pill-red {
+  border-radius: 9999px;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  font-weight: 600;
+  transition:
+    transform 0.25s ease,
+    background-color 0.25s ease,
+    color 0.25s ease;
+  &:hover {
+    transform: translateY(-2px);
+    background-color: var(--ink);
+    color: var(--ink-foreground);
+  }
+}
+
+.dark .pill-red:hover {
+  background-color: #ffffff;
+  color: #0d0d10;
+}
+
+@utility pill-outline {
+  border-radius: 9999px;
+  background-color: transparent;
+  color: var(--foreground);
+  border: 1.5px solid var(--border);
+  font-weight: 600;
+  transition:
+    transform 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+  &:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+}
+
+@utility card-soft {
+  border-radius: 1.75rem;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+  &:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 0, 0, 0.4);
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@utility animate-rise {
+  animation: rise-in 0.6s ease both;
+}
+
+@utility animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 28s linear infinite;
+}
+
+@utility animate-marquee-fast {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 16s linear infinite;
+}
+
+@utility animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee-right 28s linear infinite;
+}
+
+@utility animate-float {
+  animation: float-gentle 4s ease-in-out infinite;
+}
+
+@utility animate-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(1deg);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(12px) rotate(-1deg);
+  }
+}
+
+@keyframes drift-slow {
+  0%, 100% {
+    transform: translate(0px, 0px);
+  }
+  33% {
+    transform: translate(8px, -10px);
+  }
+  66% {
+    transform: translate(-6px, 8px);
+  }
+}
+
+@keyframes code-fade-slide {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  20%, 80% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+@utility animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+@utility animate-float-reverse {
+  animation: float-reverse 8.5s ease-in-out infinite;
+}
+
+@utility animate-drift {
+  animation: drift-slow 11s ease-in-out infinite;
+}
+
+/* Hide scrollbar for clean horizontal scrolling */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
