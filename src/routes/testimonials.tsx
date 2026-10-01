@@ -41,8 +41,10 @@ export const Route = createFileRoute("/testimonials")({
 function getInitials(name: string): string {
   if (!name) return "??";
   const parts = name.trim().split(/\s+/);
-  if (parts.length === 1) return parts[0].substring(0, 2).toUpperCase();
-  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  const first = parts[0] ?? "";
+  const last = parts[parts.length - 1] ?? "";
+  if (parts.length === 1) return first.substring(0, 2).toUpperCase();
+  return ((first[0] ?? "") + (last[0] ?? "")).toUpperCase() || "??";
 }
 
 function Testimonials() {
@@ -85,7 +87,7 @@ function Testimonials() {
     },
   };
 
-  const currentRatingDesc = ratingDescriptions[language] || ratingDescriptions.en;
+  const currentRatingDesc = ratingDescriptions[language] ?? ratingDescriptions["en"] ?? {};
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -263,7 +265,7 @@ function Testimonials() {
                       })}
                     </div>
                     <span className="text-xs font-bold text-primary">
-                      {currentRatingDesc[hoverRating || form.rating]}
+                      {currentRatingDesc[hoverRating || form.rating] ?? ""}
                     </span>
                   </div>
                 </div>

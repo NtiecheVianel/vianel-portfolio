@@ -13,7 +13,7 @@ export function LanguageSwitcher({
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const currentLang = languages.find((l) => l.code === language) || languages[0];
+  const currentLang = languages.find((l) => l.code === language) ?? languages[0] ?? { code: "en" as const, label: "English", flag: "🇬🇧" };
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {

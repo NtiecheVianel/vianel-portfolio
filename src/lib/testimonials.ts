@@ -62,8 +62,22 @@ export function updateTestimonial(id: string, data: Partial<Testimonial>): Testi
   const current = getStoredTestimonials();
   const index = current.findIndex((t) => t.id === id);
   if (index === -1) return null;
+  const existing = current[index];
+  if (!existing) return null;
 
-  const updatedItem = { ...current[index], ...data };
+  const updatedItem: Testimonial = {
+    id: data.id ?? existing.id,
+    name: data.name ?? existing.name,
+    role: data.role ?? existing.role,
+    company: data.company ?? existing.company,
+    phone: data.phone ?? existing.phone,
+    rating: data.rating ?? existing.rating,
+    quote: data.quote ?? existing.quote,
+    createdAt: data.createdAt ?? existing.createdAt,
+    ...(data.avatar !== undefined || existing.avatar !== undefined
+      ? { avatar: data.avatar ?? existing.avatar }
+      : {}),
+  };
   const updatedList = [...current];
   updatedList[index] = updatedItem;
   saveStoredTestimonials(updatedList);

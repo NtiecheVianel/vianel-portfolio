@@ -268,7 +268,7 @@ function VianekIsDeadAdmin() {
         phone: editingTestimonial.phone || "",
         rating: editingTestimonial.rating || 5,
         quote: editingTestimonial.quote,
-        avatar: editingTestimonial.avatar,
+        ...(editingTestimonial.avatar ? { avatar: editingTestimonial.avatar } : {}),
       });
       toast.success("Témoignage ajouté avec succès !");
     } else {
@@ -721,7 +721,7 @@ function VianekIsDeadAdmin() {
                     slug: `project-${Date.now()}`,
                     title: "",
                     category: "Web Development",
-                    image: PRESET_IMAGES[0].url,
+                    image: PRESET_IMAGES[0]?.url ?? "",
                     excerpt: "",
                     description: "",
                     technologies: ["JavaScript", "React", "Tailwind CSS"],
@@ -857,7 +857,7 @@ function VianekIsDeadAdmin() {
                     category: "Web Development",
                     date: new Date().toISOString().slice(0, 10),
                     readTime: "5 min read",
-                    image: PRESET_IMAGES[5].url,
+                    image: PRESET_IMAGES[5]?.url ?? PRESET_IMAGES[0]?.url ?? "",
                     excerpt: "",
                     body: ["Premier paragraphe de l'article..."],
                   });
